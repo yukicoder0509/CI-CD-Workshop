@@ -1,0 +1,23 @@
+# name of the workflow
+name: GitHub Actions Demo
+# description
+run-name: Testing out GitHub Actions
+# events to trigger this workflow
+on: [push, pull_request]
+
+# groups all the jobs in this workflow
+jobs: 
+	# define job name
+  build: 
+	  # what runner
+    runs-on: ubuntu-latest
+		# group steps together
+    steps:
+    - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+    - uses: actions/checkout@v4
+    - name: Run a one-line script
+      run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - name: Print repository info
+      run: |
+        ls ${{ github.workspace }}
+        echo "This job's status is ${{ job.status }}."
